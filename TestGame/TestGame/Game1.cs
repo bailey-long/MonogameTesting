@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography.X509Certificates;
 using TestGame.Creature_Classes;
 
 namespace TestGame
@@ -14,15 +16,24 @@ namespace TestGame
             {
                 new Pig(8, 90, false, 0, 0),
                 new Pig(10, 100, false, 0, 0),
-                new Pig(13, 300, true, 3, 5)
+                new Pig(13, 300, true, 3, 5),
+                new Pig(13, 300, true, 3, 5),
+                new Pig(13, 300, true, 3, 5),
+                new Pig(13, 300, true, 3, 5),
+                new Pig(13, 300, true, 3, 5),
+                new Pig(15, 100, false, 0, 0)
             };
+        // Create a dictionary to hold the spawn points of the pigs.
+        Dictionary<Pig, Vector2> pigSpawnPoints = new Dictionary<Pig, Vector2>();
+        // Create a dictionary to hold the spawn orientation of the pigs
+        Dictionary<Pig, SpriteEffects> pigOrientation = new Dictionary<Pig, SpriteEffects>();
+
         //get random to allow for rng later
         Random rnd = new Random();
 
         Texture2D piggy; // define 2dtexture for orcish idol
-        Vector2 idolPosition; // postion of player
         float piggySpeed; // speed of movement
-        SpriteEffects flip = SpriteEffects.FlipHorizontally; // to flip the model if it moves left or right
+        SpriteEffects flip;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -39,6 +50,26 @@ namespace TestGame
             // TODO: Add your initialization logic here
             //idolPosition = new Vector2(rnd.Next(0, 800), rnd.Next(0, 800)); // Sets position based on aspect ratio of screen
             piggySpeed = 100f;
+            foreach (Pig pig in pigs)
+            {
+                // Define the spawn points for each pig and add it to the dictionary to be called 
+                // in the draw function.
+                Vector2 spawnPoint = new Vector2(rnd.Next(0, 400), rnd.Next(0, 400));
+                // Randomly choose the direction of each pig
+                int direction = rnd.Next(0, 2);
+                // add pig direction to dictionary
+                if (direction == 0)
+                {
+                    flip = SpriteEffects.FlipHorizontally;
+                    pigOrientation.Add(pig, flip);
+                } else
+                {
+                    flip = SpriteEffects.None;
+                    pigOrientation.Add(pig, flip);
+                }
+                // add pig spawnpoint to dictionary
+                pigSpawnPoints.Add(pig, spawnPoint);
+            }
 
             base.Initialize();
         }
@@ -57,48 +88,6 @@ namespace TestGame
                 Exit();
 
             // TODO: Add your update logic here
-            var kstate = Keyboard.GetState();
-            //keyboard logic
-            if (kstate.IsKeyDown(Keys.Up))
-            {
-                idolPosition.Y -= piggySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            if (kstate.IsKeyDown(Keys.Down))
-            {
-                idolPosition.Y += piggySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            if (kstate.IsKeyDown(Keys.Left))
-            {
-                idolPosition.X -= piggySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                flip = SpriteEffects.FlipHorizontally;
-            }
-            if (kstate.IsKeyDown(Keys.Right))
-            {
-                idolPosition.X += piggySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                flip = SpriteEffects.None;
-            }
-            // Press space to make the pig squeal
-            if (kstate.IsKeyDown(Keys.Space))
-            {
-                //p1.Squeal();
-            }
-            // set boundries to the icon so that it can not leave the game window
-            if (idolPosition.X > _graphics.PreferredBackBufferWidth - piggy.Width / 2)
-            {
-                idolPosition.X = _graphics.PreferredBackBufferWidth - piggy.Width / 2;
-            } else if (idolPosition.X < piggy.Width / 2)
-            {
-                idolPosition.X = piggy.Width / 2;
-            }
-            //again for the Y axis
-            if (idolPosition.Y > _graphics.PreferredBackBufferHeight - piggy.Height / 2)
-            {
-                idolPosition.Y = _graphics.PreferredBackBufferHeight - piggy.Height / 2;
-            }
-            else if (idolPosition.Y < piggy.Height / 2)
-            {
-                idolPosition.Y = piggy.Height / 2;
-            }
 
             base.Update(gameTime);
         }
@@ -110,17 +99,20 @@ namespace TestGame
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             foreach (Pig Pig in pigs) {
-                _spriteBatch.Draw( // draw the sprite with added parameters
-                    piggy, // sprite reference
-                    new Vector2(rnd.Next(0, 800), rnd.Next(0, 800)), // co-ordinates to draw
-                    null, // Rectangle ?
-                    Color.White, // color for sprite, white to leave as is
-                    0f, // rotation
-                    new Vector2(piggy.Width / 2, piggy.Height / 2), // define sprite origin as center of image
-                    1.5f, // image scale
-                    flip, // any sprite effects
-                    0f // sprite depth
-                    );
+                Vector2 pigSpawnPoint;
+                if (pigSpawnPoints.TryGetValue(Pig, out pigSpawnPoint) && pigOrientation.TryGetValue(Pig, out flip))  {
+                    _spriteBatch.Draw( // draw the sprite with added parameters
+                        piggy, // sprite reference
+                        pigSpawnPoint, // co-ordinates to draw
+                        null, // Rectangle ?
+                        Color.White, // color for sprite, white to leave as is
+                        0f, // rotation
+                        new Vector2(piggy.Width / 2, piggy.Height / 2), // define sprite origin as center of image
+                        1.5f, // image scale
+                        flip, // any sprite effects
+                        0f // sprite depth
+                        );
+                }
             }
             _spriteBatch.End();
 
