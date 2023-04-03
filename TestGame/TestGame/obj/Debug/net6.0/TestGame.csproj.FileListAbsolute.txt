@@ -25,3 +25,4 @@ C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\obj\Debug\net6.0\Test
 C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\obj\Debug\net6.0\ref\TestGame.dll
 C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\bin\Debug\net6.0\MonoGame.Aseprite.dll
 C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\bin\Debug\net6.0\Content\Sprites\orcish_idol.xnb
+C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\bin\Debug\net6.0\Content\Sprites\piggy.xnb

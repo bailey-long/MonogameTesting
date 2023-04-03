@@ -5,10 +5,8 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/orcish_idol.png</File>
-    <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/piggy.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
