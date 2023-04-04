@@ -11,15 +11,17 @@ namespace TestGame.Creature_Classes
     {
         // Fields
         private int age;
+        private string name;
         private int weight;
         private bool isPregnant;
         private int gestationPeriod;
         private int litterSize;
 
         // Constructor
-        public Pig(int age, int weight, bool isPregnant, int gestationPeriod, int litterSize)
+        public Pig(int age, string name, int weight, bool isPregnant, int gestationPeriod, int litterSize)
         {
             this.age = age;
+            this.name = name;
             this.weight = weight;
             this.isPregnant = isPregnant;
             this.gestationPeriod = gestationPeriod;
@@ -31,6 +33,12 @@ namespace TestGame.Creature_Classes
         {
             get { return age; }
             set { age = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         public int Weight

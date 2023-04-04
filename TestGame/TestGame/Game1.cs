@@ -14,14 +14,14 @@ namespace TestGame
         //setup pigs
         List<Pig> pigs = new List<Pig>
             {
-                new Pig(8, 90, false, 0, 0),
-                new Pig(10, 100, false, 0, 0),
-                new Pig(13, 300, true, 3, 5),
-                new Pig(13, 300, true, 3, 5),
-                new Pig(13, 300, true, 3, 5),
-                new Pig(13, 300, true, 3, 5),
-                new Pig(13, 300, true, 3, 5),
-                new Pig(15, 100, false, 0, 0)
+                new Pig(8, "Piggy", 90, false, 0, 0),
+                new Pig(10, "John", 100, false, 0, 0),
+                new Pig(13, "Clarice", 300, true, 3, 5),
+                new Pig(13, "Ficher", 300, true, 3, 5),
+                new Pig(13, "Napoleon", 300, true, 3, 5),
+                new Pig(13, "Skotizo", 300, true, 3, 5),
+                new Pig(13, "Vorky", 300, true, 3, 5),
+                new Pig(15, "Poglin", 100, false, 0, 0)
             };
         // Create a dictionary to hold the spawn points of the pigs.
         Dictionary<Pig, Vector2> pigSpawnPoints = new Dictionary<Pig, Vector2>();
@@ -41,6 +41,8 @@ namespace TestGame
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -54,7 +56,7 @@ namespace TestGame
             {
                 // Define the spawn points for each pig and add it to the dictionary to be called 
                 // in the draw function.
-                Vector2 spawnPoint = new Vector2(rnd.Next(0, 400), rnd.Next(0, 400));
+                Vector2 spawnPoint = new Vector2(rnd.Next(0, 1200), rnd.Next(0, 680));
                 // Randomly choose the direction of each pig
                 int direction = rnd.Next(0, 2);
                 // add pig direction to dictionary
@@ -86,6 +88,20 @@ namespace TestGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            var mouseState = Mouse.GetState();
+            var mousePoint = new Point(mouseState.X, mouseState.Y);
+            
+
+            //Hover over pig with mouse cursor
+            /*foreach(Pig pig in pigs)
+            {
+                Vector2 pigSpawnPoint;
+                if (mState.Position(pigSpawnPoint))
+                {
+
+                }
+            }*/
+
 
             // TODO: Add your update logic here
 
@@ -98,6 +114,7 @@ namespace TestGame
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
+            // Instantiate each pig from the list
             foreach (Pig Pig in pigs) {
                 Vector2 pigSpawnPoint;
                 if (pigSpawnPoints.TryGetValue(Pig, out pigSpawnPoint) && pigOrientation.TryGetValue(Pig, out flip))  {
