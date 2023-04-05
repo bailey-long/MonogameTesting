@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Loopypew\\source\\repos\\Pig_Game\\TestGame\\TestGame\\TestGame.csproj": {}
+    "C:\\Users\\fiveb\\workspace\\MonogameTesting\\TestGame\\TestGame\\TestGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Loopypew\\source\\repos\\Pig_Game\\TestGame\\TestGame\\TestGame.csproj": {
+    "C:\\Users\\fiveb\\workspace\\MonogameTesting\\TestGame\\TestGame\\TestGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Loopypew\\source\\repos\\Pig_Game\\TestGame\\TestGame\\TestGame.csproj",
+        "projectUniqueName": "C:\\Users\\fiveb\\workspace\\MonogameTesting\\TestGame\\TestGame\\TestGame.csproj",
         "projectName": "TestGame",
-        "projectPath": "C:\\Users\\Loopypew\\source\\repos\\Pig_Game\\TestGame\\TestGame\\TestGame.csproj",
-        "packagesPath": "C:\\Users\\Loopypew\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Loopypew\\source\\repos\\Pig_Game\\TestGame\\TestGame\\obj\\",
+        "projectPath": "C:\\Users\\fiveb\\workspace\\MonogameTesting\\TestGame\\TestGame\\TestGame.csproj",
+        "packagesPath": "C:\\Users\\fiveb\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fiveb\\workspace\\MonogameTesting\\TestGame\\TestGame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Loopypew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fiveb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

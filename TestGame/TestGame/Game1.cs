@@ -91,17 +91,6 @@ namespace TestGame
             {
                 Debug.WriteLine(this.piggy.Width);
             }
-            
-
-            //Hover over pig with mouse cursor
-            /*foreach(Pig pig in pigs)
-            {
-                Vector2 pigSpawnPoint;
-                if (mState.Position(pigSpawnPoint))
-                {
-
-                }
-            }*/
 
 
             // TODO: Add your update logic here
