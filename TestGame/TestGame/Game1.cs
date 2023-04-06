@@ -25,7 +25,7 @@ namespace TestGame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        // setup pigs
+        //! setup pigs
         public static List<Pig> pigs = new List<Pig>
             {
                 new Pig(8, "Piggy", 90, false, 0, 0),
@@ -37,9 +37,9 @@ namespace TestGame
                 new Pig(13, "Vorky", 300, true, 3, 5),
                 new Pig(15, "Poglin", 100, false, 0, 0),
             };
-        // Create dictionaries to hold the spawn points and orientation of the pigs.
-        Dictionary<Pig, Vector2> pigSpawnPoints = new Dictionary<Pig, Vector2>();
-        Dictionary<Pig, SpriteEffects> pigOrientation = new Dictionary<Pig, SpriteEffects>();
+        //! Create dictionaries to hold the spawn points and orientation of the pigs.
+        private static Dictionary<Pig, Vector2> pigSpawnPoints = new Dictionary<Pig, Vector2>();
+        private static Dictionary<Pig, SpriteEffects> pigOrientation = new Dictionary<Pig, SpriteEffects>();
         Texture2D piggy; // define 2dtexture for the pig
 
         public Game1()
@@ -51,7 +51,8 @@ namespace TestGame
             IsMouseVisible = true;
         }
 
-        protected override void Initialize() // ran at start of game
+        //! ran at start of game
+        protected override void Initialize()
         {
             // TODO: Add your initialization logic here
             foreach (Pig pig in pigs)
@@ -76,7 +77,8 @@ namespace TestGame
             base.Initialize();
         }
 
-        protected override void LoadContent() // ran at start of game use to load content as name suggests
+        //! ran at start of game use to load content as name suggests
+        protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -86,7 +88,8 @@ namespace TestGame
             font = Content.Load<SpriteFont>("Text");
         }
 
-        protected override void Update(GameTime gameTime) // runs every frame
+        //! runs every frame
+        protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -105,7 +108,8 @@ namespace TestGame
             base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime) // runs every frame, use to draw content to screen
+        //! runs every frame, use to draw content to screen
+        protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
