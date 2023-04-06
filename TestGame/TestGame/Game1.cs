@@ -12,6 +12,11 @@ namespace TestGame
 {
     public class Game1 : Game
     {
+        //setup font
+        private SpriteFont font;
+        private string hoveredPig = "No Piggy Selected";
+
+
         // get random to allow for rng later
         Random rnd = new Random();
         // referece for SpriteEffects
@@ -21,7 +26,7 @@ namespace TestGame
         private SpriteBatch _spriteBatch;
 
         // setup pigs
-        List<Pig> pigs = new List<Pig>
+        public static List<Pig> pigs = new List<Pig>
             {
                 new Pig(8, "Piggy", 90, false, 0, 0),
                 new Pig(10, "John", 100, false, 0, 0),
@@ -77,6 +82,8 @@ namespace TestGame
 
             // TODO: use this.Content to load your game content here
             piggy = Content.Load<Texture2D>("Sprites/piggy");
+            //load font
+            font = Content.Load<SpriteFont>("Text");
         }
 
         protected override void Update(GameTime gameTime) // runs every frame
@@ -89,7 +96,7 @@ namespace TestGame
 
             if (rectangle.Contains(mousePoint))
             {
-                Debug.WriteLine(this.piggy.Width);
+                hoveredPig = "Oink";//this.piggy.Width.ToString();
             }
 
 
@@ -124,6 +131,8 @@ namespace TestGame
                             );
                     }
                 }
+                //Draw text on screen
+                _spriteBatch.DrawString(font, hoveredPig, new Vector2(10, 10), Color.Black);
             _spriteBatch.End();
 
             base.Draw(gameTime);
