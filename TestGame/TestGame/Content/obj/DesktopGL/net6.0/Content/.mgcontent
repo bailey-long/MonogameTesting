@@ -4,12 +4,14 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/Environment/tree.png</File>
     <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/orcish_idol.png</File>
     <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/piggy.png</File>
     <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/player1.png</File>
     <File>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Text.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/player1.png</SourceFile>
-  <SourceTime>2023-06-07T12:48:36.9462048+12:00</SourceTime>
-  <DestFile>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/bin/DesktopGL/Sprites/player1.xnb</DestFile>
-  <DestTime>2023-06-07T16:24:57.8518615+12:00</DestTime>
+  <SourceFile>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/Environment/tree.png</SourceFile>
+  <SourceTime>2023-06-07T12:46:36.9947363+12:00</SourceTime>
+  <DestFile>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/bin/DesktopGL/Content/Sprites/Environment/tree.xnb</DestFile>
+  <DestTime>2023-06-07T15:58:35.5258593+12:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T23:44:56+12:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

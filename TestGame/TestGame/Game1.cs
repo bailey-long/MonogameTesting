@@ -21,7 +21,11 @@ namespace TestGame
         private SpriteBatch _spriteBatch;
         //setup sprites
         public Texture2D playerModel;
+        public Texture2D tree;
+        List<Vector2> spritePositions = new List<Vector2>();
         public Texture2D enemy;
+        //Camera Position
+        Vector2 cameraPosition = Vector2.Zero;
         //load player object
         Player player;
 
@@ -30,6 +34,9 @@ namespace TestGame
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
+            _graphics.SynchronizeWithVerticalRetrace = false;
+            _graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -38,6 +45,17 @@ namespace TestGame
         protected override void Initialize()
         {
             base.Initialize();
+            //generate x,y for environment stuff around screen
+            for (int i = 0; i < 10; i++)
+            {
+                // Generate random positions within the screen boundaries
+                int x = rnd.Next(0, GraphicsDevice.Viewport.Width);
+                int y = rnd.Next(0, GraphicsDevice.Viewport.Height);
+
+                // Store the position in the list or array
+                spritePositions.Add(new Vector2(x, y));
+            }
+
         }
 
         //! ran at start of game use to load content as name suggests
@@ -49,6 +67,7 @@ namespace TestGame
             //load font
             font = Content.Load<SpriteFont>("Text");
             playerModel = Content.Load<Texture2D>("Sprites/player1");
+            tree = Content.Load<Texture2D>("Sprites/Environment/tree");
             //create player
             player = new Player(1, 1, 0, 10, 10, 10, 0, 2.0f, 2.0f);
                 player.Sprite = playerModel;
@@ -66,6 +85,11 @@ namespace TestGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             // TODO: Add your update logic here
+            cameraPosition = new Vector2(
+                (int)(player.Position.X - GraphicsDevice.Viewport.Width / 2),
+                (int)(player.Position.Y - GraphicsDevice.Viewport.Height / 2)
+            );
+
             KeyboardState keyboardState = Keyboard.GetState();
             player.Move(keyboardState);
         }
@@ -74,9 +98,17 @@ namespace TestGame
         {
             //Screen background colour
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            //Camera Stuff
+            Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition.X, -cameraPosition.Y, 0);
+            //Fixes pixel artifacts
+            GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, cameraTransform);
             // TODO: Add your drawing code here
-            _spriteBatch.Begin();
+            //Draw Environment sstuff around game
+            foreach (Vector2 position in spritePositions)
+            {
+                _spriteBatch.Draw(tree, position, Color.White);
+            }
             _spriteBatch.Draw(player.Sprite, player.Position, Color.White);
             _spriteBatch.End();
 
