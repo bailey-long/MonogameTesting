@@ -18,11 +18,11 @@ namespace TestGame.Creature_Classes
         private int maxHealth;
         private int currentHealth;
         private int gold;
-        private float moveSpeed;
+        private int moveSpeed;
         private float attackSpeed;
 
         public Player(int playerClass, int level, int xp, int xpToNextLevel, int maxHealth, int currentHealth,
-            int gold, float moveSpeed, float attackSpeed)
+            int gold, int moveSpeed, float attackSpeed)
         {
             this.playerClass = playerClass;
             this.level = level;
@@ -72,7 +72,7 @@ namespace TestGame.Creature_Classes
             get { return gold; }
             set { gold = value; }
         }
-        public float MoveSpeed
+        public int MoveSpeed
         {
             get { return moveSpeed; }
             set { moveSpeed = value; }
@@ -82,44 +82,22 @@ namespace TestGame.Creature_Classes
             get { return attackSpeed; }
             set { attackSpeed = value; }
         }
+
         //Methods
         public void Move(KeyboardState keyboardState)
         {
             // Calculate the movement vector
             Vector2 movement = Vector2.Zero;
-            // Check for diagonal movement
-            if (keyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyDown(Keys.D))
-            {
-                movement.X += moveSpeed;
+
+            // Check individual movement keys
+            if (keyboardState.IsKeyDown(Keys.W))
                 movement.Y -= moveSpeed;
-            }
-            else if (keyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyDown(Keys.A))
-            {
+            if (keyboardState.IsKeyDown(Keys.S))
+                movement.Y += moveSpeed;
+            if (keyboardState.IsKeyDown(Keys.A))
                 movement.X -= moveSpeed;
-                movement.Y -= moveSpeed;
-            }
-            else if (keyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyDown(Keys.D))
-            {
+            if (keyboardState.IsKeyDown(Keys.D))
                 movement.X += moveSpeed;
-                movement.Y += moveSpeed;
-            }
-            else if (keyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyDown(Keys.A))
-            {
-                movement.X -= moveSpeed;
-                movement.Y += moveSpeed;
-            }
-            else
-            {
-                // Check individual movement keys
-                if (keyboardState.IsKeyDown(Keys.W))
-                    movement.Y -= moveSpeed;
-                if (keyboardState.IsKeyDown(Keys.S))
-                    movement.Y += moveSpeed;
-                if (keyboardState.IsKeyDown(Keys.A))
-                    movement.X -= moveSpeed;
-                if (keyboardState.IsKeyDown(Keys.D))
-                    movement.X += moveSpeed;
-            }
 
             // Apply movement to the player's position
             Position += movement * MoveSpeed;

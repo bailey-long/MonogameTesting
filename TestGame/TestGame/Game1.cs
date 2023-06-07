@@ -64,12 +64,13 @@ namespace TestGame
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //load font
+            //load sprites
             font = Content.Load<SpriteFont>("Text");
             playerModel = Content.Load<Texture2D>("Sprites/player1");
             tree = Content.Load<Texture2D>("Sprites/Environment/tree");
+
             //create player
-            player = new Player(1, 1, 0, 10, 10, 10, 0, 2.0f, 2.0f);
+            player = new Player(1, 1, 0, 10, 10, 10, 0, 2, 2.0f);
                 player.Sprite = playerModel;
                 // Calculate the position to center the player model
                 player.Position = new Vector2(
@@ -82,9 +83,12 @@ namespace TestGame
         protected override void Update(GameTime gameTime)
         {
             //close game
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             // TODO: Add your update logic here
+
+            //Player movement logic
             KeyboardState keyboardState = Keyboard.GetState();
             player.Move(keyboardState);
             cameraPosition = new Vector2(
@@ -92,23 +96,24 @@ namespace TestGame
                 (int)(player.Position.Y - GraphicsDevice.Viewport.Height / 2)
             );
         }
+
         //! runs every frame, use to draw content to screen
         protected override void Draw(GameTime gameTime)
         {
-            //Screen background colour
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            //Camera Stuff
+            //Camera transform
             Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition.X, -cameraPosition.Y, 0);
-            //Fixes pixel artifacts
-            GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
+
             _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, cameraTransform);
             // TODO: Add your drawing code here
+
             //Draw Environment sstuff around game
             foreach (Vector2 position in spritePositions)
             {
                 _spriteBatch.Draw(tree, position, Color.White);
             }
             _spriteBatch.Draw(player.Sprite, player.Position, Color.White);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

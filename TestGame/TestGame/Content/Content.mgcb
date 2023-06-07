@@ -61,10 +61,3 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/player1.png
 
-#begin Text.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Text.spritefont
-

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/orcish_idol.png</SourceFile>
-  <SourceTime>2023-04-03T12:16:25.1128307+12:00</SourceTime>
-  <DestFile>C:/Users/fiveb/workspace/MonogameTesting/TestGame/TestGame/Content/bin/DesktopGL/Sprites/orcish_idol.xnb</DestFile>
-  <DestTime>2023-04-03T13:18:17.0243963+12:00</DestTime>
+  <SourceFile>C:/Users/Loopypew/workspace/MonogameTesting/TestGame/TestGame/Content/Sprites/orcish_idol.png</SourceFile>
+  <SourceTime>2023-06-07T16:35:53.7993803+12:00</SourceTime>
+  <DestFile>C:/Users/Loopypew/workspace/MonogameTesting/TestGame/TestGame/Content/bin/DesktopGL/Sprites/orcish_idol.xnb</DestFile>
+  <DestTime>2023-06-08T06:51:17.1838165+12:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T23:44:56+12:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
