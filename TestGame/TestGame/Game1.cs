@@ -85,13 +85,12 @@ namespace TestGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             // TODO: Add your update logic here
+            KeyboardState keyboardState = Keyboard.GetState();
+            player.Move(keyboardState);
             cameraPosition = new Vector2(
                 (int)(player.Position.X - GraphicsDevice.Viewport.Width / 2),
                 (int)(player.Position.Y - GraphicsDevice.Viewport.Height / 2)
             );
-
-            KeyboardState keyboardState = Keyboard.GetState();
-            player.Move(keyboardState);
         }
         //! runs every frame, use to draw content to screen
         protected override void Draw(GameTime gameTime)
