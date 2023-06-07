@@ -55,3 +55,4 @@ C:\Users\Loopypew\source\repos\Pig_Game\TestGame\TestGame\obj\Debug\net6.0\TestG
 C:\Users\Loopypew\source\repos\Pig_Game\TestGame\TestGame\obj\Debug\net6.0\TestGame.genruntimeconfig.cache
 C:\Users\Loopypew\source\repos\Pig_Game\TestGame\TestGame\obj\Debug\net6.0\ref\TestGame.dll
 C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\bin\Debug\net6.0\Content\Text.xnb
+C:\Users\fiveb\workspace\MonogameTesting\TestGame\TestGame\bin\Debug\net6.0\Content\Sprites\player1.xnb
