@@ -88,3 +88,4 @@ C:\Users\Loopypew\workspace\MonogameTesting\TestGame\TestGame\obj\Debug\net6.0\r
 C:\Users\Loopypew\workspace\MonogameTesting\TestGame\TestGame\obj\Debug\net6.0\TestGame.pdb
 C:\Users\Loopypew\workspace\MonogameTesting\TestGame\TestGame\obj\Debug\net6.0\TestGame.genruntimeconfig.cache
 C:\Users\Loopypew\workspace\MonogameTesting\TestGame\TestGame\obj\Debug\net6.0\ref\TestGame.dll
+C:\Users\Loopypew\workspace\MonogameTesting\TestGame\TestGame\bin\Debug\net6.0\Content\Sprites\Weapons\scythe.xnb

@@ -15,22 +15,30 @@ namespace TestGame
     {
         // get random to allow for rng later
         Random rnd = new Random();
-        //setup graphics
-        private SpriteFont font;
+
+        //setup graphics management
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
         //setup sprites
+        private SpriteFont font;
         public Texture2D playerModel;
+        public Texture2D playerWeapon;
+
         public Texture2D tree;
-        List<Vector2> spritePositions = new List<Vector2>();
+        List<Vector2> treePositions = new List<Vector2>();
+
         public Texture2D enemy;
+
         //Camera Position
         Vector2 cameraPosition = Vector2.Zero;
+
         //load player object
         Player player;
 
         public Game1()
         {
+            //Setup game window
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
@@ -45,6 +53,7 @@ namespace TestGame
         protected override void Initialize()
         {
             base.Initialize();
+
             //generate x,y for environment stuff around screen
             for (int i = 0; i < 2500; i++)
             {
@@ -53,7 +62,7 @@ namespace TestGame
                 int y = rnd.Next(-7000, 7000);
 
                 // Store the position in the list or array
-                spritePositions.Add(new Vector2(x, y));
+                treePositions.Add(new Vector2(x, y));
             }
 
         }
@@ -63,14 +72,14 @@ namespace TestGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             //load sprites
             font = Content.Load<SpriteFont>("Text");
             playerModel = Content.Load<Texture2D>("Sprites/player1");
+            playerWeapon = Content.Load<Texture2D>("Sprites/Weapons/scythe");
             tree = Content.Load<Texture2D>("Sprites/Environment/tree");
 
             //create player
-            player = new Player(1, 1, 0, 10, 10, 10, 0, 2, 2.0f);
+            player = new Player(1, 1, 0, 10, 10, 10, 0, 1, 2.5f, -1.5f);
                 player.Sprite = playerModel;
                 // Calculate the position to center the player model
                 player.Position = new Vector2(
@@ -86,8 +95,6 @@ namespace TestGame
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
             //Player movement logic
             KeyboardState keyboardState = Keyboard.GetState();
             player.Move(keyboardState);
@@ -95,6 +102,9 @@ namespace TestGame
                 (int)(player.Position.X - GraphicsDevice.Viewport.Width / 2),
                 (int)(player.Position.Y - GraphicsDevice.Viewport.Height / 2)
             );
+
+            //Player attck logic
+            player.Attack(gameTime);
         }
 
         //! runs every frame, use to draw content to screen
@@ -105,14 +115,21 @@ namespace TestGame
             Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition.X, -cameraPosition.Y, 0);
 
             _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, cameraTransform);
-            // TODO: Add your drawing code here
 
-            //Draw Environment sstuff around game
-            foreach (Vector2 position in spritePositions)
+            //Draw Environment stuff around game
+            foreach (Vector2 position in treePositions)
             {
                 _spriteBatch.Draw(tree, position, Color.White);
             }
+
+            //Draw Player
             _spriteBatch.Draw(player.Sprite, player.Position, Color.White);
+
+            //Draw Player weapons attack
+            if (player.attacking)
+            {
+                _spriteBatch.Draw(playerWeapon, player.Position + new Vector2(32, 0), Color.White);
+            }
 
             _spriteBatch.End();
 

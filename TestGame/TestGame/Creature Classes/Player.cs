@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,9 +21,13 @@ namespace TestGame.Creature_Classes
         private int gold;
         private int moveSpeed;
         private float attackSpeed;
+        private float projectileLife;
+
+        private float elapsedSeconds = 0f;
+        public bool attacking = false;
 
         public Player(int playerClass, int level, int xp, int xpToNextLevel, int maxHealth, int currentHealth,
-            int gold, int moveSpeed, float attackSpeed)
+            int gold, int moveSpeed, float attackSpeed, float projectileLife)
         {
             this.playerClass = playerClass;
             this.level = level;
@@ -33,6 +38,7 @@ namespace TestGame.Creature_Classes
             this.gold = gold;
             this.moveSpeed = moveSpeed;
             this.attackSpeed = attackSpeed;
+            this.projectileLife = projectileLife;
         }
         //sprite and position stats
         public Vector2 Position { get; set; }
@@ -82,6 +88,11 @@ namespace TestGame.Creature_Classes
             get { return attackSpeed; }
             set { attackSpeed = value; }
         }
+        public float ProjectileLife
+        {
+            get { return projectileLife; }
+            set { projectileLife = value; }
+        }
 
         //Methods
         public void Move(KeyboardState keyboardState)
@@ -101,6 +112,40 @@ namespace TestGame.Creature_Classes
 
             // Apply movement to the player's position
             Position += movement * MoveSpeed;
+        }
+
+        public void Attack(GameTime gameTime)
+        {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (attacking)
+            {
+                //Update the elapsed time
+                elapsedSeconds -= deltaTime;
+            } else
+            {
+                //Update the elapsed time
+                elapsedSeconds += deltaTime;
+            }
+
+            if (elapsedSeconds >= attackSpeed)
+            {
+                //Attack
+                attacking = true;
+
+                //Reset timer
+                elapsedSeconds = 0f;
+            }
+
+            if (elapsedSeconds <= projectileLife)
+            {
+                //Stop attacking
+                attacking = false;
+
+                //Reset timer
+                elapsedSeconds = 0f;
+            }
+
         }
     }
 }
