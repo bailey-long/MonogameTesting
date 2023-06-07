@@ -46,11 +46,11 @@ namespace TestGame
         {
             base.Initialize();
             //generate x,y for environment stuff around screen
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 2500; i++)
             {
                 // Generate random positions within the screen boundaries
-                int x = rnd.Next(0, GraphicsDevice.Viewport.Width);
-                int y = rnd.Next(0, GraphicsDevice.Viewport.Height);
+                int x = rnd.Next(-7000, 7000);
+                int y = rnd.Next(-7000, 7000);
 
                 // Store the position in the list or array
                 spritePositions.Add(new Vector2(x, y));

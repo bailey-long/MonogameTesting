@@ -3,10 +3,10 @@ To learn how monogame functions I will be creating a simple clone of the game "V
 
 ## To Do
 - Player movement :heavy_check_mark:
-- Camera follows player :heavy_multiplication_x:
-- Player attacks :heavy_multiplication_x:
+- Camera follows player :heavy_check_mark:
 - enemy spawning :heavy_multiplication_x:
 - enemy movement :heavy_multiplication_x:
+- Player attacks :heavy_multiplication_x:
 - enemy damage to player and player death :heavy_multiplication_x:
 - player damage to enemy and enemy death :heavy_multiplication_x:
 - inventory and new weapons :heavy_multiplication_x:

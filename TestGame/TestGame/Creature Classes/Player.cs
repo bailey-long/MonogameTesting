@@ -87,19 +87,39 @@ namespace TestGame.Creature_Classes
         {
             // Calculate the movement vector
             Vector2 movement = Vector2.Zero;
-
-            if (keyboardState.IsKeyDown(Keys.W))
-                movement.Y -= moveSpeed;
-            if (keyboardState.IsKeyDown(Keys.S))
-                movement.Y += moveSpeed;
-            if (keyboardState.IsKeyDown(Keys.A))
-                movement.X -= moveSpeed;
-            if (keyboardState.IsKeyDown(Keys.D))
+            // Check for diagonal movement
+            if (keyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyDown(Keys.D))
+            {
                 movement.X += moveSpeed;
-
-            // Normalize the movement vector to ensure consistent speed in all directions
-            if (movement != Vector2.Zero)
-                movement.Normalize();
+                movement.Y -= moveSpeed;
+            }
+            else if (keyboardState.IsKeyDown(Keys.W) && keyboardState.IsKeyDown(Keys.A))
+            {
+                movement.X -= moveSpeed;
+                movement.Y -= moveSpeed;
+            }
+            else if (keyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyDown(Keys.D))
+            {
+                movement.X += moveSpeed;
+                movement.Y += moveSpeed;
+            }
+            else if (keyboardState.IsKeyDown(Keys.S) && keyboardState.IsKeyDown(Keys.A))
+            {
+                movement.X -= moveSpeed;
+                movement.Y += moveSpeed;
+            }
+            else
+            {
+                // Check individual movement keys
+                if (keyboardState.IsKeyDown(Keys.W))
+                    movement.Y -= moveSpeed;
+                if (keyboardState.IsKeyDown(Keys.S))
+                    movement.Y += moveSpeed;
+                if (keyboardState.IsKeyDown(Keys.A))
+                    movement.X -= moveSpeed;
+                if (keyboardState.IsKeyDown(Keys.D))
+                    movement.X += moveSpeed;
+            }
 
             // Apply movement to the player's position
             Position += movement * MoveSpeed;
