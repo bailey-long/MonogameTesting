@@ -128,7 +128,7 @@ namespace TestGame
             //Draw Player weapons attack
             if (player.attacking)
             {
-                _spriteBatch.Draw(playerWeapon, player.Position + new Vector2(32, 0), Color.White);
+                _spriteBatch.Draw(playerWeapon, player.Position + new Vector2(32, -16), Color.White);
             }
 
             _spriteBatch.End();
