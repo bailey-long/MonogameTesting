@@ -28,14 +28,7 @@ namespace TestGame
         //! setup pigs
         public static List<Pig> pigs = new List<Pig>
             {
-                new Pig(8, "Piggy", 90, false, 0, 0),
-                new Pig(10, "John", 100, false, 0, 0),
-                new Pig(13, "Clarice", 300, true, 3, 5),
-                new Pig(13, "Ficher", 300, true, 3, 5),
-                new Pig(13, "Napoleon", 300, true, 3, 5),
-                new Pig(13, "Skotizo", 300, true, 3, 5),
-                new Pig(13, "Vorky", 300, true, 3, 5),
-                new Pig(15, "Poglin", 100, false, 0, 0),
+                new Pig("Zombie", 1, 1, 1, false)
             };
         //! Create dictionaries to hold the spawn points and orientation of the pigs.
         private static Dictionary<Pig, Vector2> pigSpawnPoints = new Dictionary<Pig, Vector2>();
@@ -135,8 +128,26 @@ namespace TestGame
                             );
                     }
                 }
-                //Draw text on screen
-                _spriteBatch.DrawString(font, hoveredPig, new Vector2(10, 10), Color.Black);
+
+            /*foreach (Pig Pig in pigs)
+            {
+                {
+                    _spriteBatch.Draw( // draw the sprite with added parameters
+                        piggy, // sprite reference
+                        new Vector2(, piggy), // co-ordinates to draw
+                        null, // Rectangle ?
+                        Color.White, // color for sprite, white to leave as is
+                        0f, // rotation
+                        new Vector2(piggy.Width / 2, piggy.Height / 2), // define sprite origin as center of image
+                        1.5f, // image scale
+                        flip, // any sprite effects
+                        0f // sprite depth
+                        );
+                }
+            }*/
+
+            //Draw text on screen
+            _spriteBatch.DrawString(font, hoveredPig, new Vector2(10, 10), Color.Black);
             _spriteBatch.End();
 
             base.Draw(gameTime);

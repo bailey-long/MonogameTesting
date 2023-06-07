@@ -10,84 +10,57 @@ namespace TestGame.Creature_Classes
     public class Pig
     {
         // Fields
-        private int age;
         private string name;
-        private int weight;
-        private bool isPregnant;
-        private int gestationPeriod;
-        private int litterSize;
+        private float speed;
+        private int damage;
+        private int health;
+        private bool dropsChest;
 
         // Constructor
-        public Pig(int age, string name, int weight, bool isPregnant, int gestationPeriod, int litterSize)
+        public Pig(string name, float speed, int damage, int health, bool dropsChest)
         {
-            this.age = age;
             this.name = name;
-            this.weight = weight;
-            this.isPregnant = isPregnant;
-            this.gestationPeriod = gestationPeriod;
-            this.litterSize = litterSize;
+            this.speed = speed;
+            this.damage = damage;
+            this.health = health;
+            this.dropsChest = dropsChest;
         }
 
         // Properties
-        public int Age
-        {
-            get { return age; }
-            set { age = value; }
-        }
 
+        //Get returns the value assigned when constructing the pig outside of the class,
+        //Set assigns the returned value to the pig
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
-        public int Weight
+        public float Speed
         {
-            get { return weight; }
-            set { weight = value; }
+            get { return speed; }
+            set { speed = value; }
         }
 
-        public bool IsPregnant
+        public int Damage
         {
-            get { return isPregnant; }
-            set { isPregnant = value; }
+            get { return damage; }
+            set { damage = value; }
         }
 
-        public int GestationPeriod
+        public int Health
         {
-            get { return gestationPeriod; }
-            set { gestationPeriod = value; }
+            get { return health; }
+            set { health = value; }
         }
 
-        public int LitterSize
+        public bool DropsChest
         {
-            get { return litterSize; }
-            set { litterSize = value; }
+            get { return dropsChest; }
+            set { dropsChest = value; }
         }
 
         // Methods
-        public void Squeal()
-        {
-            Debug.WriteLine("The pig lets out a loud squeal!");
-        }
-
-        public void Root()
-        {
-            Debug.WriteLine("The pig roots around in the dirt looking for food.");
-        }
-
-        public void GiveBirth()
-        {
-            if (isPregnant)
-            {
-                Debug.WriteLine("The pig gives birth to a litter of " + litterSize + " piglets!");
-                isPregnant = false;
-            }
-            else
-            {
-                Debug.WriteLine("The pig is not pregnant.");
-            }
-        }
     }
 
 }
